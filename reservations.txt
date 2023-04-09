@@ -1,0 +1,50 @@
+Reservation details: 
+Name:Farid
+Surname:Bayramov
+Contact:123456
+Place:Marmaris
+Room type::KING SUIT
+Adult:2
+Child:1
+Days:3
+Total:45.0 tl
+
+Reservation details: 
+Name:Mehmet
+Surname:Yavuz
+Contact:34567
+Place:Cesme
+Room type::FAMILY
+Adult:3
+Child:2
+Days:4
+Total:96.0 tl
+
+Reservation details: 
+Name:Azer
+Surname:Bayramli
+Contact:05215256789
+Place:Cesme
+Room type::FAMILY
+Adult:2
+Child:1
+Days:3
+Total:45.0 tl
+
+Reservation details: 
+Name:Murad
+Surname:Bayramov
+Contact:121221121
+Place:Bodrum
+Room type::FAMILY
+Adult:2
+Child:1
+Days:3
+Total:75.0 tl
+
+Reservation details: 
+Name:sdsd
+Surname:dsd
+Contact:1212
+Place:Marmaris
+Room type::

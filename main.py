@@ -1,0 +1,151 @@
+#170421993-Farid Bayramov
+
+import tkinter as tk
+from tkinter import ttk, NW, messagebox
+
+
+def reset():
+    namefield.delete(0,tk.END)
+    surnamefield.delete(0,tk.END)
+    contactfield.delete(0,tk.END)
+    days.delete(0,tk.END)
+    childbox.delete(0,tk.END)
+    adultbox.delete(0,tk.END)
+    combobox.delete(0,tk.END)
+    bodrum.deselect()
+    cesme.deselect()
+    marmaris.deselect()
+def total():
+    global total
+    liste = [10, 12, 14, 6, 8, 10, 2, 4, 6]
+
+    if var.get()==1 and (combobox.selection_get() == "FAMILY"):
+        total = ((int(adultbox.get()) * liste[0] + int(childbox.get()) * liste[0] / 2)*int(days.get()))
+    if var.get()==1 and (combobox.selection_get() == "DELUXE"):
+        total=((int(adultbox.get())*liste[1]+int(childbox.get())*liste[1]/2)*int(days.get()))
+    if var.get()==1 and (combobox.selection_get() == "KING SUIT"):
+        total=((int(adultbox.get())*liste[2]+int(childbox.get())*liste[2]/2)*int(days.get()))
+    if var.get()==2 and (combobox.selection_get() == "FAMILY"):
+        total = ((int(adultbox.get()) * liste[3] + int(childbox.get()) * liste[3] / 2) * int(days.get()))
+    if var.get()==2 and (combobox.selection_get() == "DELUXE"):
+        total = ((int(adultbox.get()) * liste[4] + int(childbox.get()) * liste[4] / 2) * int(days.get()))
+    if var.get()==2 and (combobox.selection_get() == "KING SUIT"):
+        total=((int(adultbox.get())*liste[5]+int(childbox.get())*liste[5]/2)*int(days.get()))
+    if var.get()==3 and (combobox.selection_get() == "FAMILY"):
+        total=((int(adultbox.get())*liste[6]+int(childbox.get())*liste[6]/2)*int(days.get()))
+    if var.get()==3 and (combobox.selection_get() == "DELUXE"):
+        total=((int(adultbox.get())*liste[7]+int(childbox.get())*liste[7]/2)*int(days.get()))
+    if var.get()==3 and (combobox.selection_get() == "KING SUIT"):
+        total=((int(adultbox.get())*liste[8]+int(childbox.get())*liste[8]/2)*int(days.get()))
+    messagebox.showinfo("",f"Total: {total} tl")
+    var1.set(str(total))
+def reservation():
+    file=open("reservations.txt","a+")
+    file.write("Reservation details: ")
+    file.write("\nName:")
+    file.write(namefield.get())
+    file.write("\nSurname:")
+    file.write(surnamefield.get())
+    file.write("\nContact:")
+    file.write(contactfield.get())
+    file.write("\nPlace:")
+    if   var.get()==1:
+        file.write("Bodrum")
+    elif var.get()==2:
+        file.write("Cesme")
+    elif var.get()==3:
+        file.write("Marmaris")
+    file.write("\nRoom type::")
+    file.write(combobox.selection_get())
+    file.write("\nAdult:")
+    file.write(adultbox.get())
+    file.write("\nChild:")
+    file.write(childbox.get())
+    file.write("\nDays:")
+    file.write(days.get())
+    file.write("\nTotal:")
+    file.write(var1.get())
+    file.write(" tl")
+    file.write("\n\n")
+    file.close()
+    messagebox.showinfo("","Reservation is added succesfully!")
+
+
+
+root=tk.Tk()
+root.title("Room Reservation System")
+root.geometry("670x400")
+root.resizable(False,False)
+name=tk.Label(root,text="Name")
+name.pack()
+name.place(x=30,y=20)
+surname=tk.Label(root,text="Surname")
+surname.pack()
+surname.place(x=30,y=60)
+contact=tk.Label(root,text="Contact")
+contact.pack()
+contact.place(x=30,y=100)
+namefield=tk.Entry()
+namefield.pack()
+namefield.place(x=100,y=20)
+surnamefield=tk.Entry()
+surnamefield.pack()
+surnamefield.place(x=100,y=60)
+contactfield=tk.Entry()
+contactfield.pack()
+contactfield.place(x=100,y=100)
+var= tk.IntVar()
+bodrum= tk.Radiobutton(root, text="Bodrum", value=1,variable=var)
+bodrum.pack()
+bodrum.place(x=550, y=20)
+cesme= tk.Radiobutton(root, text="Çeşme", value=2,variable=var)
+cesme.pack()
+cesme.place(x=550, y=60)
+marmaris= tk.Radiobutton(root, text="Marmaris", value=3,variable=var)
+marmaris.pack()
+marmaris.place(x=550, y=100)
+liste=['FAMILY', 'DELUXE', 'KING SUIT']
+combobox=ttk.Combobox(root,values=liste)
+combobox.pack()
+combobox.place(x=300,y=20)
+totalbutton=tk.Button(root,width=10,text="Total",command=total)
+totalbutton.pack()
+totalbutton.place(x=400,y=300)
+resetbutton=tk.Button(root,width=10,text="Reset",command=reset)
+resetbutton.pack()
+resetbutton.place(x=400,y=350)
+reservationbutton=tk.Button(root,width=10,text="Reservation",command=reservation)
+reservationbutton.pack()
+reservationbutton.place(x=520,y=300)
+exitbutton= tk.Button(root, width=10, text="Exit", command=root.quit)
+exitbutton.pack()
+exitbutton.place(x=520,y=350)
+dayslabel=tk.Label(root,text="How many nights will you stay in the hotel?")
+dayslabel.pack()
+dayslabel.place(x=30,y=300)
+days=tk.Entry(root,width=38)
+days.pack()
+days.place(x=32,y=330)
+childlabel=tk.Label(root,text="Child:")
+childlabel.pack()
+childlabel.place(x=30,y=200)
+childbox=tk.Entry(root)
+childbox.pack()
+childbox.place(x=100,y=200)
+adultlabel=tk.Label(root,text="Adult:")
+adultlabel.pack()
+adultlabel.place(x=30,y=230)
+adultbox=tk.Entry(root)
+adultbox.pack()
+adultbox.place(x=100,y=230)
+canvass= tk.Canvas(width=280,height=220)
+canvass.pack()
+canvass.place(x=260,y=70)
+photo= tk.PhotoImage(file="C:\\Users\\Dell\\Documents\\Python\\roomreservation\\otel.png")
+canvass.create_image(-30,-80, image=photo,anchor=NW)
+var1=tk.StringVar()
+empty=tk.Label(textvariable=var1)
+empty.pack()
+empty.pack_forget()
+
+root.mainloop()
